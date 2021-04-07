@@ -1,10 +1,11 @@
 name: CI as per ENV
 
 on:
-  #push:
-   # branches: [ master ]
-  pull_request:
+  push:
     branches: [ master ]
+  #pull_request:
+   # branches: [ master ]
+  workflow_dispatch:
 
 jobs:
   build:
@@ -35,6 +36,11 @@ jobs:
         pip install pytest
         export PYTHONPATH=src
         pytest
+         
+    - name: Scan current project
+      uses: anchore/scan-action@v2
+      with:
+        path: "src/"  
         
     - name: Deploy to Heroku
       env:
