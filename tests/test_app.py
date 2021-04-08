@@ -2,5 +2,5 @@ from app import index
 
 
 def test_index():
-    assert index() == "Hello, this is ankita, and this is Github action CICD !"
+    assert index() == "Hello, this is dev enviroment, and Github action CICD !"
 
