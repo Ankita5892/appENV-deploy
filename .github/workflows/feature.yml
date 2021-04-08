@@ -40,6 +40,7 @@ jobs:
 
        steps:
         - name: Scan current project
-          uses: anchore/scan-action@v2
+        - uses: actions/checkout@v2
+        - uses: anchore/scan-action@v2
           with:
             path: "src/"
