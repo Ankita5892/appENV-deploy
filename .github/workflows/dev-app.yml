@@ -46,7 +46,7 @@ jobs:
       runs-on: ubuntu-latest    
       environment:
         name: APP_DEV
-        url: 'https://$HEROKU_APP_NAME.herokuapp.com/'
+        url: 'https://tranquil-chamber-41091.herokuapp.com/'
       needs: [build]
       steps:
       - uses: actions/checkout@v2
