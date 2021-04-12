@@ -1,4 +1,4 @@
-name: CI as per feature build
+name: CI as per feature build py-app
 
 on:
   push:
