@@ -1,4 +1,4 @@
-name: CI as per ENV to deploy
+name: CI CD to deploy py app
 
 on:
   push:
