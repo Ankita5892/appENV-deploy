@@ -1,4 +1,4 @@
-name: CI as per ENV Dev
+name: CI as per ENV to deploy
 
 on:
   push:
