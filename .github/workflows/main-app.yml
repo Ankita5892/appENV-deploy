@@ -56,19 +56,4 @@ jobs:
           git fetch --prune --unshallow
           git remote add heroku https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$HEROKU_APP_NAME.git
           git push heroku HEAD:master -f
-  ProdDeploy:
-      env:
-        HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
-        HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-      runs-on: ubuntu-latest    
-      environment: 
-        name: APP_PROD
-        url: 'https://hidden-fortress-04261.herokuapp.com/'
-      needs: [DevDeploy]
-      steps:
-      - uses: actions/checkout@v2
-        if: github.ref == 'refs/heads/master' && job.status == 'success'
-      - run: |
-          git fetch --prune --unshallow
-          git remote add heroku https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$HEROKU_APP_NAME.git
-          git push heroku HEAD:master -f
+
