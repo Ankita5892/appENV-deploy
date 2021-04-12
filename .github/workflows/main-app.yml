@@ -2,9 +2,7 @@ name: CI as per feature build
 
 on:
   push:
-    branches: [ master ]
-
-    
+    branches: [ master ]  
   workflow_dispatch:
 
 jobs:
