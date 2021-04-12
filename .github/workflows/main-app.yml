@@ -1,8 +1,8 @@
-name: CI as per feature build
+name: CI as per ENV
 
 on:
   push:
-    branches: [ master ]  
+    branches: [ master ]
   workflow_dispatch:
 
 jobs:
@@ -34,12 +34,12 @@ jobs:
         pip install pytest
         export PYTHONPATH=src
         pytest
-
+         
     - name: Scan current project
       uses: anchore/scan-action@v2
       with:
-        path: "src/"
-         
+        path: "src/" 
+        
   DevDeploy:
       env:
         HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
@@ -56,3 +56,4 @@ jobs:
           git fetch --prune --unshallow
           git remote add heroku https://heroku:$HEROKU_API_TOKEN@git.heroku.com/$HEROKU_APP_NAME.git
           git push heroku HEAD:master -f
+
