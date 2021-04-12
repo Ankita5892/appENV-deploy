@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
 
-    return "Hello, Github !"
+    return "Hello, Github hello !"
 
 if __name__ == "__main__":
     app.run()
