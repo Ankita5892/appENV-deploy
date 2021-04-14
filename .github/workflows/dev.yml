@@ -1,8 +1,8 @@
-name: CI CD to deploy py app
+name: CI CD to deploy py app from dev
 
 on:
   push:
-    branches: [ master ]
+    branches: [ development]
   workflow_dispatch:
 
 jobs:
