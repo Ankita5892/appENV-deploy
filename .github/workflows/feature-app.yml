@@ -1,5 +1,5 @@
 
-name: CI as per feature build py-app feature
+name: CI as per feature build py-app feature version 1
 on:
   push:
     branches: [ feature ]
