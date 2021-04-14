@@ -1,6 +1,5 @@
 
 name: CI as per feature build py-app feature
-
 on:
   push:
     branches: [ feature ]
