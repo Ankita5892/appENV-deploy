@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-name: CI as per feature build py-app feature
-=======
-name: CI as per feature build py-app
->>>>>>> 35226463a7279a241f3a6782f9f1ae3fb6e5e816
 
+name: CI as per feature build py-app feature
 on:
   push:
     branches: [ feature ]
