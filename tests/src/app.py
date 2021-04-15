@@ -5,7 +5,7 @@ app = Flask(__name__)
 @app.route("/")
 def index():
 
-    return "Hello, Github action CICD from master !"
+    return "feature Hello, Github action CICD from master !"
 
 
 
