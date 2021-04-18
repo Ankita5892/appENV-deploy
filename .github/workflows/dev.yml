@@ -6,6 +6,16 @@ on:
   workflow_dispatch:
 
 jobs:
+  gitClone: 
+     runs-on: ubuntu-latest
+
+     steps:
+     - name: Check out my other private repo
+       uses: actions/checkout@v2
+       with:
+        repository: Ankita5892/workflow-test
+        token: ${{ secrets.my_pat }}
+  
   build:
 
     runs-on: ubuntu-latest
