@@ -34,11 +34,14 @@ jobs:
         pip install pytest
         export PYTHONPATH=src
         pytest
-         
-    - name: Scan current project
-      uses: anchore/scan-action@v2
+  
+  scan:
+    runs-on: ubuntu-latest
+    #- name: Scan current project
+    steps:
+    - uses: anchore/scan-action@v2
       with:
-        path: "src/" 
+       path: "src/" 
         
   DevDeploy:
       env:
@@ -48,7 +51,7 @@ jobs:
       environment: 
         name: APP_DEV
         url: 'https://tranquil-chamber-41091.herokuapp.com'
-      needs: [build]
+      needs: [scan]
       steps:
       - uses: actions/checkout@v2
         if: job.status == 'success'
