@@ -38,6 +38,7 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     #- name: Scan current project
+    needs: [build]
     steps:
     - uses: anchore/scan-action@v2
       with:
