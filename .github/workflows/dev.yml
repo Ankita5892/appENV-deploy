@@ -42,7 +42,7 @@ jobs:
     steps:
     - uses: anchore/scan-action@v2
       with:
-       path: "src/" 
+       path: "./" 
         
   DevDeploy:
       env:
