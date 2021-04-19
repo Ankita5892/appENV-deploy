@@ -13,7 +13,7 @@ jobs:
      - name: Check out my other private repo
        uses: actions/checkout@v2
        with:
-        repository: Ankita5892/workflow-test
+        repository: Ankita5892/appENV-deploy
         token: ${{ secrets.my_PAT }}
   
   build:
@@ -53,7 +53,18 @@ jobs:
     steps:
     - uses: anchore/scan-action@v2
       with:
-       path: "./" 
+       path: "./"
+       
+  DockerImage:
+    runs-on: ubuntu-latest
+    needs: [scan]
+    steps:
+    - uses: mr-smithers-excellent/docker-build-push@v4
+      with:
+        image: ankita5891/java-app
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
         
   DevDeploy:
       env:
