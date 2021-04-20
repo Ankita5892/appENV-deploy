@@ -52,7 +52,7 @@ jobs:
       with:
         image: ankita5891/python-heroku-app
         registry: docker.io
-        dockerfile: appENV-deploy/Dockerfile
+        context: appENV-deploy/Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
   
