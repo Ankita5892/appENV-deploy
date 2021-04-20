@@ -52,6 +52,7 @@ jobs:
       with:
         image: ankita5891/java-app
         registry: docker.io
+        dockerfile: appENV-deploy/Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
   
