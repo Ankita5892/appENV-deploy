@@ -50,7 +50,7 @@ jobs:
     steps:
     - uses: mr-smithers-excellent/docker-build-push@v4
       with:
-        image: ankita5891/java-app
+        image: ankita5891/python-heroku-app
         registry: docker.io
         dockerfile: Dockerfile
         username: ${{ secrets.DOCKER_USERNAME }}
