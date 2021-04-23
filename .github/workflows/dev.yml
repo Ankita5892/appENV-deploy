@@ -16,7 +16,7 @@ jobs:
         repository: Ankita5892/appENV-deploy
         token: ${{ secrets.my_PAT }}
   
-  build:
+  setup:
 
     runs-on: ubuntu-latest
     steps:
@@ -44,9 +44,9 @@ jobs:
         export PYTHONPATH=src
         pytest
         
-  DockerImage:
+  ImageBuild:
     runs-on: ubuntu-latest
-    needs: [Clone ,build, scan]
+   # needs: [Clone ,build, scan]
     steps:
       -
         name: Checkout
@@ -74,7 +74,7 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     #- name: Scan current project
-    #needs: [gitClone ,build]
+    needs: [Clone, setup ,ImageBuild]
     steps:
     - uses: anchore/scan-action@v2
       with:
@@ -89,7 +89,7 @@ jobs:
       environment: 
         name: APP_DEV
         url: 'https://tranquil-chamber-41091.herokuapp.com'
-      needs: [DockerImage]
+      needs: [scan]
       steps:
       - uses: actions/checkout@v2
         if: job.status == 'success'
