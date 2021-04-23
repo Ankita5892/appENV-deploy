@@ -16,7 +16,7 @@ jobs:
         repository: Ankita5892/appENV-deploy
         token: ${{ secrets.my_PAT }}
   
-  setup:
+  unitTest:
 
     runs-on: ubuntu-latest
     steps:
@@ -44,7 +44,7 @@ jobs:
         export PYTHONPATH=src
         pytest
         
-  ImageBuild:
+  build:
     runs-on: ubuntu-latest
    # needs: [Clone ,build, scan]
     steps:
@@ -74,7 +74,7 @@ jobs:
   scanCode:
     runs-on: ubuntu-latest
     #- name: Scan current project
-    needs: [Clone, setup ,ImageBuild]
+    needs: [Clone, unitTest ,build]
     steps:
     - uses: anchore/scan-action@v2
       with:
@@ -82,13 +82,13 @@ jobs:
   scanImage:
     runs-on: ubuntu-latest
     #- name: Scan current project
-    needs: [Clone, setup ,ImageBuild]
+    needs: [Clone, unitTest ,build]
     steps:  
     - uses: anchore/scan-action@v2
       with:
        image: "ankita5891/python-heroku-app:123"
        fail-build: true
-       severity-cutoff: critical
+       severity-cutoff: low
   DevDeploy:
       env:
         HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
