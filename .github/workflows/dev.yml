@@ -16,7 +16,7 @@ jobs:
         repository: Ankita5892/appENV-deploy
         token: ${{ secrets.my_PAT }}
   
-  build:
+  unitTest:
 
     runs-on: ubuntu-latest
     steps:
@@ -44,9 +44,9 @@ jobs:
         export PYTHONPATH=src
         pytest
         
-  DockerImage:
+  build:
     runs-on: ubuntu-latest
-    needs: [Clone ,build, scan]
+   # needs: [Clone ,build, scan]
     steps:
       -
         name: Checkout
@@ -71,16 +71,24 @@ jobs:
           push: true
           tags: ankita5891/python-heroku-app:123
   
-  scan:
+  scanCode:
     runs-on: ubuntu-latest
     #- name: Scan current project
-    #needs: [gitClone ,build]
+    needs: [Clone, unitTest ,build]
     steps:
     - uses: anchore/scan-action@v2
       with:
        path: "./"
+  scanImage:
+    runs-on: ubuntu-latest
+    #- name: Scan current project
+    needs: [Clone, unitTest ,build]
+    steps:  
+    - uses: anchore/scan-action@v2
+      with:
+       image: "ankita5891/python-heroku-app:123"
+       fail-build: false
        
-        
   DevDeploy:
       env:
         HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
@@ -89,7 +97,7 @@ jobs:
       environment: 
         name: APP_DEV
         url: 'https://tranquil-chamber-41091.herokuapp.com'
-      needs: [DockerImage]
+      needs: [scanCode, scanImage]
       steps:
       - uses: actions/checkout@v2
         if: job.status == 'success'
