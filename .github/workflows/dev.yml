@@ -87,8 +87,8 @@ jobs:
     - uses: anchore/scan-action@v2
       with:
        image: "ankita5891/python-heroku-app:123"
-       fail-build: true
-       severity-cutoff: low
+       fail-build: false
+       
   DevDeploy:
       env:
         HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
